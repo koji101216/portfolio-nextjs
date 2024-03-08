@@ -1,10 +1,17 @@
-'use client';
-import { Inter } from "next/font/google";
+"use client";
 import "./globals.css";
-import { createTheme, AppBar, Box, Button, ThemeProvider, Toolbar, Link } from '@mui/material';
-import { blue } from '@mui/material/colors';
+import {
+  createTheme,
+  Box,
+  ThemeProvider,
+  AppBar,
+  Button,
+  Toolbar,
+  Link,
+} from "@mui/material";
+import { blue } from "@mui/material/colors";
 
-declare module '@mui/material/styles' {
+declare module "@mui/material/styles" {
   // 指定を単純にするためにモバイルとPCの2つに限定する
   interface BreakpointOverrides {
     xs: false;
@@ -32,8 +39,6 @@ const defaultTheme = createTheme({
   },
 });
 
-const inter = Inter({ subsets: ["latin"] });
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -43,16 +48,15 @@ export default function RootLayout({
     <html lang="en">
       <ThemeProvider theme={defaultTheme}>
         <Box
-            component='main'
-            sx={{
-              flexGrow: 1,
-              p: 3,
-              marginTop: '64px',
-              background: 'white',
-            }}
-          >
-            {children}
-          </Box>
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3,
+            marginTop: "64px",
+            background: "white",
+          }}>
+          {children}
+        </Box>
       </ThemeProvider>
     </html>
   );

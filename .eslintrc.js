@@ -1,55 +1,70 @@
 module.exports = {
-    parser: '@typescript-eslint/parser',
-    "env": {
-        "browser": true,
-        "es2021": true
+  parser: "@typescript-eslint/parser",
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@next/next/recommended",
+  ],
+  overrides: [
+    {
+      env: {
+        node: true,
+      },
+      files: [".eslintrc.{js,cjs}"],
+      parserOptions: {
+        sourceType: "script",
+      },
     },
-    "extends": [
-        'next/core-web-vitals',
-        'plugin:@typescript-eslint/recommended',
-        "eslint:recommended",
-        "plugin:react/recommended",
-        'plugin:react-hooks/recommended',
-        'plugin:prettier/recommended',
+  ],
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  plugins: ["import", "react", "jsx-a11y"],
+  rules: {
+    "import/no-anonymous-default-export": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/jsx-uses-react": "off",
+    "jsx-a11y/alt-text": [
+      "warn",
+      {
+        elements: ["img"],
+        img: ["Image"],
+      },
     ],
-    "overrides": [
-        {
-            "env": {
-                "node": true
-            },
-            "files": [
-                ".eslintrc.{js,cjs}"
-            ],
-            "parserOptions": {
-                "sourceType": "script"
-            }
-        }
-    ],
-    settings: {
-        react: {
-            version: 'detect',
+    // import の順番をルール化
+    // 参考：https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md
+    "import/order": [
+      "error",
+      {
+        alphabetize: {
+          order: "asc",
         },
-    },
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module",
-        ecmaFeatures: {
-            jsx: true,
-        },
-    },
-    "plugins": [
-        "react"
+      },
     ],
-    "rules": {
-        "react/react-in-jsx-scope": "off",
-        "react/jsx-uses-react": "off",
-    },
-    ignorePatterns: [
-        '/node_modules/*',
-        '/.next/*',
-        '/out/*',
-        '/public/*',
-        '/coverage/*',
-        '/.eslintrc.js','tailwind.config.js',
-    ],
-}
+  },
+  ignorePatterns: [
+    "/node_modules/*",
+    "/.next/*",
+    "/out/*",
+    "/public/*",
+    "/coverage/*",
+    "/.eslintrc.js",
+    "tailwind.config.js",
+  ],
+};
